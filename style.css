@@ -1,0 +1,28 @@
+.logo{
+    width: 200px;
+    height: 100px;
+  
+}
+
+header{
+    background-color: #f3e9f1;
+    display: flex;
+    justify-content: space-between;
+   
+}
+.list{
+    background-color: #f3e9f1;
+    
+}
+.icon{
+    margin-top: 50px;
+    margin-right: 20px;
+}
+.card{
+    
+  background-color: white; 
+  width: 20%; 
+  height: 200px;
+}
+    
+    
