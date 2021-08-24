@@ -10,12 +10,12 @@
             productsContainer.innerHTML += 
             ` 
             
-                <div class="card mx-auto my-auto shadow ">
+                <div class="card mx-auto my-auto shadow">
                 <a href="product.html?id=${product._id}">
                     <img class="card-img-top picture" src=${product.imageUrl}>
                     <div class= "card-body">
                         <h3> ${product.name}</h3>
-                        <p> ${product.price}</p>
+                        <p> ${product.price /100}€</p>
                     </div>
                  </a>   
                 </div>

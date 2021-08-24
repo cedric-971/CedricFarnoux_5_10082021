@@ -1,4 +1,6 @@
 
+    
+
 
 
 const url = new URL(location.href);
@@ -10,11 +12,13 @@ console.log(products2)
  
 
 
-
-  fetch ("http://localhost:3000/api/teddies/"+ id)
+ const fetchDisplay = async () =>  { 
+  await  fetch ("http://localhost:3000/api/teddies/"+ id)
     .then ((res) => res.json())
     .then ((data) =>  {
-    products2.innerHTML = 
+        
+
+     products2.innerHTML = 
     
     `
 <div class= block>
@@ -30,25 +34,80 @@ console.log(products2)
     <form>
     <label for="quantity">Quantité :</label>
         <input type="number" name="quantity" id="quantity"></br>
-    
+    </form>
+    <form>
     <label for= "color">Couleur :</label>
         <select name="color" id="color">
-            <option value="">--Couleur--</option>
-            <option value="${data.colors[0]}">${data.colors[0]}</option>
-            <option value="${data.colors[1]}">${data.colors[1]}</option>
-            <option value="${data.colors[2]}">${data.colors[2]}</option>
-            <option value="${data.colors[3]}">${data.colors[3]}</option>
+            
+            
+            
         </select>
     </form>
-    <button onclick="setData()">Ajouter au panier</button>
+    <button id="btn_ajouter" type="submit" name="btn-ajouter">Ajouter au panier</button>
     </div>
     
 </div>
     `
-    const form = document.getElementById("quantity");
-    console.log(form); 
- }
-);
+    
+    
+        const optionCouleur = data.colors;
+        let structureCouleur = [];
+
+        for (let i = 0 ; i < optionCouleur.length; i++){
+            structureCouleur = structureCouleur +
+            `
+            <option value="${i}">${optionCouleur[i]}</option>
+            
+            `;
+        } 
+    const positionCouleur =document.getElementById("color");
+    positionCouleur.innerHTML +=structureCouleur;
 
 
 
+    const ajouterPanier = document.getElementById("btn_ajouter")
+    console.log(ajouterPanier);
+    const quantity = document.getElementById("quantity");
+    console.log(quantity);
+    const color = document.getElementById("color");
+    console.log(color);
+    
+    ajouterPanier.addEventListener("click", (e) =>{
+       e.preventDefault();
+
+       let optionsProduit ={
+        nomProduit : data.name,
+        idProduit : data._id,
+        quantite : quantity.value,
+        couleur : color.value,
+        prix : data.price*quantity.value/100 +"€"
+    }
+    
+    console.log(optionsProduit);
+    let produitLocalStorage = JSON.parse(localStorage.getItem("produit"));
+    console.log(produitLocalStorage);
+
+    if(produitLocalStorage){
+        produitLocalStorage.push(optionsProduit);
+        localStorage.setItem("produit",JSON.stringify(produitLocalStorage));
+
+    }
+    else{
+    produitLocalStorage = [];
+    produitLocalStorage.push(optionsProduit);
+    localStorage.setItem("produit",JSON.stringify(produitLocalStorage));
+
+    console.log(produitLocalStorage);
+}
+   
+
+});
+
+
+
+})};
+ 
+fetchDisplay();
+   
+
+   
