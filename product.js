@@ -56,7 +56,7 @@ console.log(products2)
         for (let i = 0 ; i < optionCouleur.length; i++){
             structureCouleur = structureCouleur +
             `
-            <option value="${i}">${optionCouleur[i]}</option>
+            <option value="${optionCouleur[i]}">${optionCouleur[i]}</option>
             
             `;
         } 
@@ -83,19 +83,21 @@ console.log(products2)
         prix : data.price*quantity.value/100 +"€"
     }
     
-    console.log(optionsProduit);
+    
     let produitLocalStorage = JSON.parse(localStorage.getItem("produit"));
-    console.log(produitLocalStorage);
 
-    if(produitLocalStorage){
+    const ajoutProduitLocalStorage = ()=>{
         produitLocalStorage.push(optionsProduit);
         localStorage.setItem("produit",JSON.stringify(produitLocalStorage));
 
+    };
+
+    if(produitLocalStorage){
+        ajoutProduitLocalStorage();
     }
     else{
     produitLocalStorage = [];
-    produitLocalStorage.push(optionsProduit);
-    localStorage.setItem("produit",JSON.stringify(produitLocalStorage));
+   ajoutProduitLocalStorage();
 
     console.log(produitLocalStorage);
 }
