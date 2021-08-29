@@ -34,14 +34,18 @@ products3.innerHTML = panierVide;
     }
 
 }
-let btn_supprimer = document.querySelectorAll("#supprimer");
-console.log(supprimer);
 
-for ( let j = 0 ; j < btn_supprimer.length; j++){
-  btn_supprimer[j].addEventListener("click" ,(e) =>{
-        e.preventDefault();
-        console.log(btn_supprimer);
+  let btn_supprimer = document.querySelectorAll("#supprimer");
+  console.log(supprimer);
+  
+  for ( let j = 0 ; j < produitLocalStorage.length; j++){
+      
+        btn_supprimer[j].addEventListener("click",(e)=>{
+        e.preventDefault(); 
         let produitSupprimer = produitLocalStorage[j].idProduit;
         console.log(produitSupprimer);
-  })  
-}
+
+        
+     })
+     
+  }
