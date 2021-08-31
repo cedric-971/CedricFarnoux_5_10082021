@@ -76,11 +76,12 @@ console.log(products2)
        e.preventDefault();
 
        let optionsProduit ={
+        image : data.imageUrl,   
         nomProduit : data.name,
         idProduit : data._id,
         quantite : quantity.value,
         couleur : color.value,
-        prix : data.price*quantity.value/100 +"€"
+        prix : data.price*quantity.value/100
     }
     
     
