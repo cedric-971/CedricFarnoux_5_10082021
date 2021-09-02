@@ -85,11 +85,11 @@ console.log(products2)
     }
     
     
-    let produitLocalStorage = JSON.parse(localStorage.getItem("produit"));
+    let produitLocalStorage = JSON.parse(localStorage.getItem("products"));
 
     const ajoutProduitLocalStorage = ()=>{
         produitLocalStorage.push(optionsProduit);
-        localStorage.setItem("produit",JSON.stringify(produitLocalStorage));
+        localStorage.setItem("products",JSON.stringify(produitLocalStorage));
 
     };
 

@@ -1,4 +1,4 @@
-let produitLocalStorage = JSON.parse(localStorage.getItem("produit"));
+let produitLocalStorage = JSON.parse(localStorage.getItem("products"));
 console.log(produitLocalStorage);
 
 //-----------------------------contenu du panier-------------------------------------//
@@ -61,7 +61,7 @@ products3.innerHTML = panierVideDisplay;
 
         produitLocalStorage = produitLocalStorage.filter(el =>el.idProduit!== produitSupprimer);
         console.log(produitLocalStorage);
-        localStorage.setItem("produit",JSON.stringify(produitLocalStorage)); 
+        localStorage.setItem("products",JSON.stringify(produitLocalStorage)); 
         
         window.location.href="panier.html";
      })
@@ -97,27 +97,45 @@ const panierDisplay = () => {
     console.log(containerFormulaire);
     const structureFormulaire=
     `
-<form action="" class=" my-5" id="form">
+<form action="" class=" my-5 mx-auto" id="form">
     <h2 id="titre_formulaire">Formulaire de contact</h2>
-    <label for="prenom">Prénom </label>
-    <input type="text" id="prenom" class="col-6 m-auto" name="prenom" required>
+    <div class="prenom-container">
+    <label for="prenom">Prénom </label></br>
+    <input type="text" id="prenom" class=" m-auto" name="prenom" required>
+    <span></span>
+    </div>
 
-    <label for="nom">Nom </label>
-    <input type="text" id="nom" class="col-6 m-auto" name="nom" required>
+    <div class="nom-container">
+    <label for="nom">Nom </label></br>
+    <input type="text" id="nom" class=" m-auto" name="nom" required>
+    <span></span>
+    </div>
 
-    <label for="adresse">Adresse </label>
-    <textarea name="adresse" id="adresse" class="col-6 m-auto " required></textarea>
+    <div class="adresse-container">
+    <label for="adresse">Adresse </label></br>
+    <textarea name="adresse" id="adresse" class=" m-auto " required></textarea>
+    <span></span>
+    </div>
 
-    <label for="ville">Ville </label>
-    <input type="text" id="ville" name="ville" class="col-6 m-auto" required>
+    <div class="ville-container">
+    <label for="ville">Ville </label></br>
+    <input type="text" id="ville" name="ville" class=" m-auto" required>
+    <span></span>
+    </div>
 
-    <label for="codepostal">Code Postal </label>
-    <input type="number" id="codepostal" name="codepostal" class="col-6 m-auto" required>
+    <div class="codepostal-container">
+    <label for="codepostal">Code Postal </label></br>
+    <input type="text" id="codepostal" name="codepostal" class=" m-auto" required>
+    <span></span>
+    </div>
 
-    <label for="email">E-mail </label>
-    <input type="text" id="email" name="email" class="col-6 m-auto" required>
+    <div class="email-container">
+    <label for="email">E-mail </label></br>
+    <input type="text" id="email" name="email" class=" m-auto" required>
+    <span>E-mail incorrect</span>
+    </div>
 
-    <button id="btn_formulaire" type="submit" name="btn_formulaire" class=" col-3 mx-auto my-3">Commander</button>
+    <button id="btn_formulaire" type="submit" name="btn_formulaire" class=" col-4 mx-auto my-3">Commander</button>
 </form>
     
     `;
@@ -126,27 +144,173 @@ const panierDisplay = () => {
 };
 panierDisplay();
 
-//--transferer les données du  formulaire dans le local storage---//
-const btnFormulaire = document.getElementById("btn_formulaire");
 
-btnFormulaire.addEventListener("click", (e) => {
-    e.preventDefault();
-    const objetFormulaire ={
-        prenom :localStorage.getItem("prenom"),
-        nom :localStorage.getItem("nom"),
-        adresse :localStorage.getItem("adresse"),
-        ville :localStorage.getItem("ville"),
-        codepostal :localStorage.getItem("codepostal"),
-        email :localStorage.getItem("email"),
+
+//---------------------------validation formulaire----------------------//
+
+const inputs = document.querySelectorAll('input[type="text"], input [type="text"], textarea ');
+
+let prenom, nom, adresse, ville, codepostal, email;  
+
+const errorDisplay = (tag, message, valid) =>{
+const container = document.querySelector("." + tag + "-container" );
+const span = document.querySelector("." + tag + "-container > span");
+
+if(!valid){
+    container.classList.add("error");
+    span.textContent = message;
+}else {
+    container.classList.remove("error");
+    span.textContent = message;
+}
+
+};
+
+const prenomChecker = (value) => {
+   
+     if(value.length > 0 && (value.length < 3 || value.length > 20)){
+        errorDisplay("prenom","Le prénom doit faire entre 3 et 20 caractères");
+        prenom = null;
+    }else{
+        errorDisplay("prenom","", true);
+        prenom = value;
 
     }
+};
+const nomChecker =  (value) => {
     
+     if(value.length > 0 && (value.length < 3 || value.length > 20)){
+        errorDisplay("nom","Le nom doit faire entre 3 et 20 caractères");
+        nom = null;
+    }else{
+        errorDisplay("nom","", true);
+        nom = value;
 
-    localStorage.setItem("prenom",document.getElementById("prenom").value);
-    localStorage.setItem("nom",document.getElementById("nom").value);
-    localStorage.setItem("adresse",document.getElementById("adresse").value);
-    localStorage.setItem("ville",document.getElementById("ville").value);
-    localStorage.setItem("codepostal",document.getElementById("codepostal").value);
-    localStorage.setItem("email",document.getElementById("email").value);
-    console.log(objetFormulaire);
-})
+    }
+};
+const adresseChecker = (value) => {
+
+    if(!value.match(/^[A-Za-z0-9\s]{5,50}$/)){
+        errorDisplay("adresse","L'adresse ne doit pas contenir de caractères spéciaux");
+        adresse = null;
+    }else{
+        errorDisplay("adresse","",true);
+        adresse = value;
+    }
+};
+
+const villeChecker =  (value) => {
+   
+    if(value.length > 0 && (value.length < 3 || value.length > 30)){
+        errorDisplay("ville"," La ville doit faire entre 3 et 30 caractères");
+        ville = null;
+    }else{
+        errorDisplay("ville","", true);
+        ville = value;
+
+    }
+};
+
+const codePostalChecker =  (value) => {
+   
+
+    if(!value.match(/^[0-9]{5}$/)){
+        errorDisplay("codepostal"," Le code postal n'est pas valide");
+        codepostal = null;
+    }else{
+        errorDisplay("codepostal","", true);
+        codepostal = value;
+
+    }
+};
+
+const emailChecker = (value) => {
+
+    if(!value.match(/^[\w_-]+@[\w-]+\.[a-z]{2,4}$/i)){
+       errorDisplay("email","Le mail n'est pas valide");
+       email=null; 
+    }else{
+       errorDisplay("email","",true);
+       email = value;
+    }
+};
+
+inputs.forEach((input)=>{
+    input.addEventListener("input", (e)=>{
+        switch (e.target.id){
+            case "prenom":
+                prenomChecker(e.target.value);
+                break;
+            case "nom":
+                nomChecker(e.target.value);
+                break;
+            case "adresse":
+                adresseChecker(e.target.value);
+                break;
+            case "ville" :
+                villeChecker(e.target.value);
+                break;
+             case "codepostal":
+                codePostalChecker(e.target.value);
+                break;
+            case "email":
+                emailChecker(e.target.value);
+                break;
+            default:
+                nul;
+
+
+                    
+        }
+    });
+});
+
+//--transferer les données du  formulaire dans le local storage---//
+
+
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    if(prenom && nom && adresse && ville && codepostal && email){
+        const contact ={
+
+            firstName :prenom,
+            lastName :nom,
+            address :adresse,
+            city :ville,
+            email :email
+    
+        };
+        console.log(contact);
+        localStorage.setItem("contact",JSON.stringify(contact));
+        const  products = produitLocalStorage;
+
+        const product_id ={
+
+            products,
+            contact
+        } ;
+        
+        console.log(product_id);
+
+        const sendData = fetch("http://localhost:3000/api/teddies/order",{
+            method: "POST",
+            body :JSON.stringify(product_id),
+            headers: {
+                "content-type" : "application/json",
+            },
+        });
+        console.log(sendData);
+
+       
+    }else{
+        alert("Veuillez remplir correctement les champs");
+    };
+    
+    
+    
+    
+    
+ 
+
+});
