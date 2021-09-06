@@ -1,6 +1,11 @@
-let produitLocalStorage = JSON.parse(localStorage.getItem("products"));
+
+
+let produitLocalStorage = JSON.parse(localStorage.getItem("produit"));
 console.log(produitLocalStorage);
 
+let products=JSON.parse(localStorage.getItem("products"));
+
+console.log(products);
 //-----------------------------contenu du panier-------------------------------------//
 
 const products3 = document.getElementById("selection");
@@ -25,11 +30,11 @@ products3.innerHTML = panierVideDisplay;
        
        <img src="${produitLocalStorage[i].image} " alt="" class="image">
        <div class="description_produit">
-       <p>Nom :${produitLocalStorage[i].nomProduit} </p>
-       <p>Modèle :${produitLocalStorage[i].idProduit} </p>
-       <p>Couleur :${produitLocalStorage[i].couleur} </p>
-       <p>Quantité :${produitLocalStorage[i].quantite} </p>
-       <p>Total :${produitLocalStorage[i].prix}€ </p>
+       <p>Nom : ${produitLocalStorage[i].nomProduit} </p>
+       <p>Modèle : ${produitLocalStorage[i].idProduit} </p>
+       <p>Couleur : ${produitLocalStorage[i].couleur} </p>
+       <p>Quantité : ${produitLocalStorage[i].quantite} </p>
+       <p>Total : ${produitLocalStorage[i].prix} € </p>
        </div>
        <div class="btn_supprimer">
        <button id = "supprimer">supprimer</button>
@@ -50,7 +55,7 @@ products3.innerHTML = panierVideDisplay;
 //----------------------création bouton supprimer article du panier----------------//
 
   let btn_supprimer = document.querySelectorAll("#supprimer");
-  console.log(supprimer);
+ 
   
   for ( let j = 0 ; j < produitLocalStorage.length; j++){
    
@@ -61,7 +66,7 @@ products3.innerHTML = panierVideDisplay;
 
         produitLocalStorage = produitLocalStorage.filter(el =>el.idProduit!== produitSupprimer);
         console.log(produitLocalStorage);
-        localStorage.setItem("products",JSON.stringify(produitLocalStorage)); 
+        localStorage.setItem("produit",JSON.stringify(produitLocalStorage)); 
         
         window.location.href="panier.html";
      })
@@ -83,7 +88,7 @@ const prixTotalPanier = totalPanier.reduce(reducer);
 console.log(prixTotalPanier);
 const prixTotalDisplay = 
 `<div class="prix_total">
-Prix total :${prixTotalPanier} €
+Montant total : ${prixTotalPanier} €
 </div>
 
 `
@@ -97,7 +102,7 @@ const panierDisplay = () => {
     console.log(containerFormulaire);
     const structureFormulaire=
     `
-<form action="" class=" my-5 mx-auto" id="form">
+<form action="" class=" mx-auto my-5 col-12  " id="form">
     <h2 id="titre_formulaire">Formulaire de contact</h2>
     <div class="prenom-container">
     <label for="prenom">Prénom </label></br>
@@ -270,7 +275,7 @@ inputs.forEach((input)=>{
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
-
+    
     if(prenom && nom && adresse && ville && codepostal && email){
         const contact ={
 
@@ -281,36 +286,48 @@ form.addEventListener("submit", (e) => {
             email :email
     
         };
+        
+       localStorage.setItem("contact",JSON.stringify(contact));
         console.log(contact);
-        localStorage.setItem("contact",JSON.stringify(contact));
-        const  products = produitLocalStorage;
+        
+        localStorage.setItem("prixTotalPanier",JSON.stringify(prixTotalPanier));
+        console.log();
+    
+        
+        const envoyerServeur ={
 
-        const product_id ={
-
-            products,
-            contact
+            contact,
+            products
         } ;
         
-        console.log(product_id);
+    console.log(envoyerServeur);
 
         const sendData = fetch("http://localhost:3000/api/teddies/order",{
             method: "POST",
-            body :JSON.stringify(product_id),
+            body :JSON.stringify(envoyerServeur),
+        
             headers: {
                 "content-type" : "application/json",
             },
         });
-        console.log(sendData);
+     
+        sendData.then(async (res) => res.json())
+        .then (data =>{ 
+            const responseServeur = data.orderId;
+            localStorage.setItem("orderId",responseServeur);
+            window.location = "confirmation.html";
+           
+        });  
 
        
-    }else{
-        alert("Veuillez remplir correctement les champs");
-    };
+
+   }
     
-    
+ 
     
     
     
  
 
 });
+

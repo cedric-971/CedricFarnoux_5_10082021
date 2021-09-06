@@ -83,14 +83,20 @@ console.log(products2)
         couleur : color.value,
         prix : data.price*quantity.value/100
     }
+      
+        
+        
+            
     
     
-    let produitLocalStorage = JSON.parse(localStorage.getItem("products"));
-
+    
+    let produitLocalStorage = JSON.parse(localStorage.getItem("produit"));
+    let products = JSON.parse(localStorage.getItem("products"));
     const ajoutProduitLocalStorage = ()=>{
         produitLocalStorage.push(optionsProduit);
-        localStorage.setItem("products",JSON.stringify(produitLocalStorage));
-
+        products.push(data._id);
+        localStorage.setItem("produit",JSON.stringify(produitLocalStorage));
+        localStorage.setItem("products",JSON.stringify(products));
     };
 
     if(produitLocalStorage){
@@ -98,11 +104,12 @@ console.log(products2)
     }
     else{
     produitLocalStorage = [];
+    products =[];
    ajoutProduitLocalStorage();
 
     console.log(produitLocalStorage);
 }
-   
+  
 
 });
 

@@ -1,4 +1,6 @@
-
+body{
+    
+ }
 
 .logo{
     width: 200px;
@@ -10,7 +12,7 @@ header{
     background-color: #f3e9f1;
     display: flex;
     justify-content: space-between;
-   
+    
 }
 
 a{
@@ -23,8 +25,8 @@ a:hover{
 }
 
 #products{
-    background-color: #f3e9f1;
-    height: 900px;
+    background-color: #ffffff;
+    height: auto;
     display: flex;
     flex-wrap: wrap;
 
@@ -40,6 +42,7 @@ a:hover{
     border-radius: 30px;
     background-color:rgb(243, 243, 243);
     width: 300px;
+    
 }
 
 .picture{
@@ -68,6 +71,7 @@ button{
     background-color: white;
     background-image: url(./imageNounours.jpeg);
     background-repeat: no-repeat;
+    height: 250px;
     
 }
 #quantity{
@@ -97,8 +101,9 @@ p{
 }
 .footer{
     background-color:  #f3e9f1;
-    height: 200px;
+    height: 150px;
     margin-top: 20px;
+    
 }
 
 
@@ -118,7 +123,9 @@ p{
     border: black solid 2px;
     border-radius: 10px;
     background-color: rgb(243, 243, 243);
-    width: 50%;
+    
+        
+    
     
 }
 #titre_formulaire{
@@ -178,3 +185,67 @@ label{
     color: red;
     border: 1px solid rgba(255, 0, 0, 0.527);
   }
+
+  /*************************confirmation commande***********************/
+  #bloc-confirmation{
+    border: black solid 2px;
+    text-align: center;
+    margin-top: 40px;
+    margin-left: 200px;
+    margin-right: 200px;
+  }
+
+
+  #titre-confirmation{
+      background-color: #f3e9f1 ;
+  }
+
+  .retour-accueil{
+    display: flex;
+    align-items: center;
+    
+  }
+  ul{
+      text-decoration: none;
+      display: flex;
+        flex-wrap: wrap;
+      width: 100%;
+} 
+li{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+
+}
+.bloc-text{
+    font-weight: bold;
+    font-style: oblique;
+    
+}
+
+.accueil{
+    margin-top: 40px;
+    margin-right: ;
+    font-weight: bold;
+    font-style: oblique;
+    font-size: 20px;
+}
+    
+.accueil-2{
+    
+    margin-top: 40px;
+    font-weight: bold;
+    font-style: oblique;
+    font-size: 20px;
+    border: white solid;
+    background-color:#f3e9f1 ;
+    width: 250px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+} 
+     
+
+
+  

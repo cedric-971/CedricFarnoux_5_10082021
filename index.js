@@ -10,7 +10,7 @@
             productsContainer.innerHTML += 
             ` 
             
-                <div class="card mx-auto my-auto shadow">
+                <div class="card mx-auto my-2 shadow ">
                 <a href="product.html?id=${product._id}">
                     <img class="card-img-top picture" src=${product.imageUrl}>
                     <div class= "card-body">
