@@ -12,7 +12,7 @@ const confirmationDisplay = () => {
     console.log(containerConfirmation);
     const structureConfirmation=
     `
-<div id="bloc-confirmation">
+<div id="bloc-confirmation" class="col-8 mx-auto p-0">
     <h1 id="titre-confirmation">Confirmation de votre commande</h1>
     <p>Votre commande numéro :<strong> ${orderId}</strong> </br> a bien été prise en compte</p>
     <p>Le montant de votre commande est de : <strong>${prixTotalPanier} €</strong> </p>
@@ -28,6 +28,8 @@ const confirmationDisplay = () => {
 };
 confirmationDisplay();
 
+//------vider automatiquement le panier apres confirmation de la commande-----------//
+
 function removeLocalStorage(key){
 
     localStorage.removeItem(key)
@@ -38,3 +40,9 @@ removeLocalStorage("prixTotalPanier");
 removeLocalStorage("products");
 removeLocalStorage("orderId");
 
+//------------retour page index si panier vide-------------------//
+
+if (orderId == null || prixTotalPanier == null) {
+    window.location.href="index.html";
+   
+};

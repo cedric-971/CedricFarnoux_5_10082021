@@ -1,6 +1,8 @@
-body{
-    
- }
+
+ 
+ /**************************************NAV********************************/
+
+
 
 .logo{
     width: 200px;
@@ -14,15 +16,30 @@ header{
     justify-content: space-between;
     
 }
+.icon{
+    margin-top: 50px;
+    margin-right: 20px;
+}
 
 a{
 text-decoration: none;
 color: black;
 }
+
 a:hover{
     text-decoration: none;
     color: black;
 }
+
+.accueil{
+    margin-top: 40px;
+    font-weight: bold;
+    font-style: oblique;
+    font-size: 20px;
+}
+
+/****************************************Page index*********************************/
+
 
 #products{
     background-color: #ffffff;
@@ -32,32 +49,28 @@ a:hover{
 
     
 }
-.icon{
-    margin-top: 50px;
-    margin-right: 20px;
-}
-.card {
-    
-    height: 300px;
-    border-radius: 30px;
-    background-color:rgb(243, 243, 243);
-    width: 300px;
-    
-}
-
-.picture{
-border-radius: 30px 30px 0 0;
-height: 200px;
-width: 100%;
-
-}
 
 
 
-.block{
+
+
+
+
+
+
+/*******************************Page product*****************************/
+ 
+.bloc-product{
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     margin-top: 50px;
+
 }
+.bloc-info{
+    width: 50%;
+}
+
 .picture2{
     width: 40%;
     border-radius: 30px;
@@ -66,14 +79,7 @@ width: 100%;
 button{
     margin-top: 30px;
 }
-.text{
-    color: black;
-    background-color: white;
-    background-image: url(./imageNounours.jpeg);
-    background-repeat: no-repeat;
-    height: 250px;
-    
-}
+
 #quantity{
     width: 10%;
 }
@@ -81,7 +87,31 @@ button{
 p{
     margin: 0;
 }
-    
+
+ 
+
+#btn_ajouter{
+    border:none ;
+    outline-style: none;
+    padding: 10px;
+    background-color: #f3e9f1;
+    border-radius: 150px;
+    transition: 0.3s ease;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+#btn_ajouter:hover{
+    filter: brightness(105%);
+    transform: translateX(2px);
+}
+
+/*************************************PAGE PANIER*********************************/
+ 
+.panier{
+    font-style: oblique;
+}
+
 .box_panier {
     display: flex;
     flex-wrap: wrap;
@@ -89,7 +119,7 @@ p{
     margin-bottom: 20px;
 
 }  
-.image{
+.picture3{
     height: 120px;
     width: 180px;
 }
@@ -99,6 +129,195 @@ p{
     font-weight: bolder;
     font-size: 20px;
 }
+.panierVide{
+    text-align: center;
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bolder;
+}
+#supprimer{
+    background-color: white;
+    border: none;
+    outline-style: none;
+    font-size: 20px;
+}
+
+@media screen and (min-width:375px) {
+
+    .nav-bar{
+        display: flex;
+        flex-direction: column;
+        
+           
+        }
+        .nav{
+            display: flex;
+            justify-content: space-around;
+            border-top: black solid 1px;
+        
+        }
+        
+        .accueil{
+            height: 50px;
+            margin-top:20px;
+            
+        }
+        
+        .icon{
+            height: 50px;
+            margin-top:30px; 
+            
+        }
+        .icon-accueil{
+            margin-right: 10px;
+            margin-top: 50px;
+        } 
+
+        .logo{
+            margin: auto;
+        }
+
+
+    .prix_total{
+        display: flex;
+        font-size: 15px;
+        justify-content: center;
+    }
+
+    .accueil-2{
+
+       margin:auto;
+    
+ }
+ li{
+        width: 100%;;
+ }
+
+ #bloc-confirmation{
+     font-size: 15px;
+ }
+ #titre-confirmation{
+     font-size: 20px;
+ }
+ .text{
+     background-image: none;
+    height: 150px;
+}
+ .card{
+     width: 250px;
+     height: 250px;
+     border-radius: 30px;
+     background-color:rgb(243, 243, 243)
+
+ }
+ .picture{
+    border-radius: 30px 30px 0 0;
+     height: 150px;
+ }
+ h1{
+     font-size: 30px;
+ }
+ .picture2{
+     width: 100%;
+     margin: auto;
+     margin-bottom: 20px;
+
+ }
+ .bloc-info{
+     width: 100%;
+ }
+ 
+ .bloc-product{
+     display: flex;
+     flex-direction: column;
+    
+     
+ }
+ 
+    
+}
+
+@media screen and (min-width:768px){
+
+
+.bloc-product{
+    display: flex;
+    flex-direction: row;
+}
+
+.bloc-info{
+    width: 40%;
+}
+
+.picture2{
+   width: 55%;
+   margin-top: 10px;
+}
+li{
+    width: 30%;
+}
+
+}
+
+@media screen and (min-width:1024px) {
+    .nav-bar{
+        display: flex;
+        flex-direction: row;
+        
+    }
+    .nav{
+        display: flex;
+        justify-content: space-between;
+        width: 20%;
+        border: none;
+    }  
+    .logo{
+        margin:0px;
+    }
+    .accueil{
+        margin-top: 40px;
+    }
+    .icon{
+        margin-top: 50px;
+    }
+    .text{
+        color: black;
+        background-color: white;
+        background-image: url(./imageNounours.jpeg);
+        background-repeat: no-repeat;
+        height: 250px;
+        
+    }
+    .bloc-text{
+        font-size: 25px;
+    }
+    h1{
+        font-size: 40px;
+        font-weight: bold;
+        margin-top: 20px;
+    }
+
+    .card {
+    
+        height: 300px;
+        border-radius: 30px;
+        background-color:rgb(243, 243, 243);
+        width: 300px;
+        
+    }
+
+    .picture{
+        border-radius: 30px 30px 0 0;
+        height: 200px;
+        width: 100%;
+        
+        
+        }
+
+
+}
+
+
 .footer{
     background-color:  #f3e9f1;
     height: 150px;
@@ -147,8 +366,8 @@ label{
  }
  #btn_formulaire{
     
-    
         border: none;
+        outline-style: none;
         background: #f3e9f1;
         width: 80%;
         margin: 12px auto 0;
@@ -185,6 +404,21 @@ label{
     color: red;
     border: 1px solid rgba(255, 0, 0, 0.527);
   }
+  .accueil-2{
+    
+    margin-top: 40px;
+    
+    font-weight: bold;
+    font-style: oblique;
+    font-size: 20px;
+    border:none;
+    background-color:#f3e9f1 ;
+    width: 250px;
+    padding: 10px;
+    
+} 
+
+
 
   /*************************confirmation commande***********************/
   #bloc-confirmation{
@@ -205,46 +439,34 @@ label{
     align-items: center;
     
   }
+
+ 
+
+  /********************************footer*************************************/
   ul{
       text-decoration: none;
       display: flex;
-        flex-wrap: wrap;
+      flex-wrap: wrap;
       width: 100%;
 } 
-li{
+  li{
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    width: 100%;
+    margin: auto;
     cursor: pointer;
-
+    
+    
 }
-.bloc-text{
+  .bloc-text{
     font-weight: bold;
     font-style: oblique;
     
 }
 
-.accueil{
-    margin-top: 40px;
-    margin-right: ;
-    font-weight: bold;
-    font-style: oblique;
-    font-size: 20px;
-}
+
     
-.accueil-2{
-    
-    margin-top: 40px;
-    font-weight: bold;
-    font-style: oblique;
-    font-size: 20px;
-    border: white solid;
-    background-color:#f3e9f1 ;
-    width: 250px;
-    padding-bottom: 10px;
-    padding-top: 10px;
-} 
+
      
 
 
